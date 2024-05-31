@@ -5,29 +5,48 @@
 <meta name="viewport" content="width=device-width">
 <title>Test API Client</title>
 <script>
-let doIt=()=>{
-  let tab=document.getElementById("tab1");
-  let rows=tab1.getElementsByTagName('tr');
+let doIt = () => {
+  let tab = document.getElementById("tab1");
+  let rows = tab.getElementsByTagName('tr');
   fetch('https://suelem.westeurope.cloudapp.azure.com:8080/')
     .then(response => response.json())
-    .then(data=>data.Results.forEach(  //.slice(0,3)
-      x=>{
-        let newRow=rows[0].cloneNode(true);
-        let divs=newRow.getElementsByTagName('td');
-        divs[0].innerHTML=x['ID'];
-        divs[1].innerHTML=x['Name'];
-        divs[2].innerHTML=x['Email'];
-        tab1.appendChild(newRow);
+    .then(data => data.Results.forEach(  //.slice(0,3)
+      x => {
+        let newRow = rows[0].cloneNode(true);
+        let divs = newRow.getElementsByTagName('td');
+        divs[0].innerHTML = x['ID'];
+        divs[1].innerHTML = x['Name'];
+        divs[2].innerHTML = x['Email'];
+        tab.appendChild(newRow);
       }
-    )
-  );
+    ));
 }
 </script>
+<script type='text/javascript'>
+  function initEmbeddedMessaging() {
+    try {
+      embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+      embeddedservice_bootstrap.init(
+        '00DHs000003VtG9',
+        'MIAW',
+        'https://suelemoliv-240111-119-demo.my.site.com/ESWMIAW1705938368918',
+        {
+          scrt2URL: 'https://suelemoliv-240111-119-demo.my.salesforce-scrt.com'
+        }
+      );
+    } catch (err) {
+      console.error('Error loading Embedded Messaging: ', err);
+    }
+  };
+</script>
+<script type='text/javascript' src='https://suelemoliv-240111-119-demo.my.site.com/ESWMIAW1705938368918/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </head>
 <body>
 <button onClick="doIt()">Press now</button>
 This is where the results turn up: <br/>
 <table id='tab1' bgcolor='blue'>
 <tr><td>ID</td><td>Name</td><td>Email</td></tr>
-</table></body>
+</table>
+</body>
 </html>
